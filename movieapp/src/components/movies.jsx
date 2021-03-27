@@ -12,6 +12,8 @@ class Movies extends Component {
             // <h1>{name} </h1> variables
             // <h1>{this.state.count}</h1> object value
              <h1>{`My Name is ${name}`} </h1> // using back tick
+
+            // <//h1></h1>
         );
     }
 }
