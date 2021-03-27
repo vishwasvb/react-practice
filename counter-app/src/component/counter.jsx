@@ -1,15 +1,39 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
+
+    state = {
+        count: 0
+    };
+    handleIncrement = () => {
+        this.setState({
+            count: this.state.count + 1
+        })
+    };
+
+    handleDecrement = () => {
+        this.setState({
+            count: this.state.count - 1
+        })
+    }
+
     render() { 
         return (
+
+            <div>
+                <button onClick={this.handleDecrement} className = "btn btn-danger">Decrement</button>
+                <span style={{ fontSize:100 }} > {this.formatCount()} </span>
+                <button onClick={this.handleIncrement} className = "btn btn-primary">Increment</button>
+            </div>
+        );
+
+    }
+    formatCount() {
+        const { count } = this.state;
+        return count === 0 ? 'Zero' : count;
+    }
+
              // To avoid the inclusion of div below the root, we wrap inbetween <React.Fragment> tag
-            <React.Fragment>
-                <h1>Hello World</h1>
-                <button>Increment</button>
-            </React.Fragment>)
-
-
         // React.createElement('h1');
         // React.createElement('div');
 
@@ -24,8 +48,6 @@ class Counter extends Component {
         //     <h1>Hello World</h1>
         //     <button>Increment</button>
         // </div>
-        
-    }
 }
  
 export default Counter;
