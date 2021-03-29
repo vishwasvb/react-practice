@@ -5,11 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import Counter from './component/counter';
+import Counters from './component/counters'
 
 ReactDOM.render(
   <React.StrictMode>
     
-    <Counter />
+    <Counters />
   </React.StrictMode>,
   document.getElementById('root')
 );

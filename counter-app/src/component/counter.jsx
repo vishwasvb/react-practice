@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 class Counter extends Component {
 
     state = {
-        count: 0
+        // count: 0
+
+        count: this.props.value
     };
     handleIncrement = () => {
         this.setState({
@@ -19,10 +21,10 @@ class Counter extends Component {
 
     render() { 
         return (
-
+            //every react comopnent has the property colled props and it is a plain js object
             <div>
                 <button onClick={this.handleDecrement} className = "btn btn-danger">Decrement</button>
-                <span style={{ fontSize:100 }} > {this.formatCount()} </span>
+                <span style={{ fontSize:60 }} > {this.formatCount()} </span>
                 <button onClick={this.handleIncrement} className = "btn btn-primary">Increment</button>
             </div>
         );
