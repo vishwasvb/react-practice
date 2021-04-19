@@ -38,6 +38,27 @@ componentDidMount(){
   console.log('App-Mounted')
 }
 
+ //componentDidUpdate() {
+            //this method is updated after the component is updated 
+            //compare old state with the new state, old props with the new props,
+            //if there is a change we can make a ajax request to get the new data from the server
+            //if there is no change, no request 
+            //console.log('Counter - Updated');
+        //}
+
+        componentDidUpdate(prevProps,prevState) {
+          console.log('prevProps',prevProps);
+          console.log('prevState',prevState);
+          //if(prevProps.counter.value !== this.props.counter.value){
+              //Ajax call and get new data from the server
+         // }
+      }
+
+      componentWillUnmount(){
+          //to clean up, cleanup timers, or listeners. else we will endup with memory leaks
+          console.log("Counter - UnMount");
+      }
+
 //react will schedule a call with the render once it sees setState, all the childern elements will also gets 
 //rendered
  handleIncrement = counter => {

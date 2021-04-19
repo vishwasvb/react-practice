@@ -68,33 +68,15 @@ class Counter extends Component {
     render() {
         // console.log("props",this.props) // every react component has the property called props and it is a plain JS object
         
-        //componentDidUpdate() {
-            //this method is updated after the component is updated 
-            //compare old state with the new state, old props with the new props,
-            //if there is a change we can make a ajax request to get the new data from the server
-            //if there is no change, no request 
-            //console.log('Counter - Updated');
-        //}
-
-        componentDidUpdate(prevProps,prevState) {
-            console.log('prevProps',prevProps);
-            console.log('prevState',prevState);
-            if(prevProps.counter.value !== this.props.counter.value){
-                //Ajax call and get new data from the server
-            }
-        }
-
-        componentWillUnmount(){
-            //to clean up, cleanup timers, or listeners. else we will endup with memory leaks
-            console.log("Counter - UnMount");
-        }
+       
         
         return (
             <div>
                 {/* {this.props.children} */}
                 <h4>{this.props.id}</h4>
 
-                <button onClick={()=>this.props.onDecrement(this.props.counter)} className="btn btn-secondary btn-sm">
+                <button onClick={()=>this.props.onDecrement(this.props.counter)} className="btn btn-secondary btn-sm"
+                disable={this.props.counter.value === 0 ? "disabled":""} >
                     Decrement
                 </button>
                 <span className={this.getBadgeClasses()}>
