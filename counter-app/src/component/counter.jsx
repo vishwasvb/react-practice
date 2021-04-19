@@ -71,15 +71,15 @@ class Counter extends Component {
             <div>
                 {/* {this.props.children} */}
                 <h4>{this.props.id}</h4>
+
+                <button onClick={()=>this.props.onDecrement(this.props.counter)} className="btn btn-secondary btn-sm">
+                    Decrement
+                </button>
                 <span className={this.getBadgeClasses()}>
                     {this.formatCount()}
                 </span>
                 <button onClick={()=>this.props.onIncrement(this.props.counter)} className="btn btn-secondary btn-sm">
                     Increment
-                </button>
-
-                <button onClick={()=>this.props.onDecrement(this.props.counter)} className="btn btn-secondary btn-sm">
-                    Decrement
                 </button>
 
                 {/* <button onClick={() => this.props.onDelete(this.props.id)} className="btn btn-danger btn-sm m-2">
