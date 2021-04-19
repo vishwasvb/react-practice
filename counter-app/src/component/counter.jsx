@@ -67,6 +67,23 @@ class Counter extends Component {
     
     render() {
         // console.log("props",this.props) // every react component has the property called props and it is a plain JS object
+        
+        //componentDidUpdate() {
+            //this method is updated after the component is updated 
+            //compare old state with the new state, old props with the new props,
+            //if there is a change we can make a ajax request to get the new data from the server
+            //if there is no change, no request 
+            //console.log('Counter - Updated');
+        //}
+
+        componentDidUpdate(prevProps,prevState){
+            console.log('prevProps',prevProps);
+            console.log('prevState',prevState);
+            if(prevProps.counter.value !== this.props.counter.value){
+                //Ajax call and get new data from the server
+            }
+        }
+        
         return (
             <div>
                 {/* {this.props.children} */}
