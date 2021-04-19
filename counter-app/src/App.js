@@ -54,7 +54,8 @@ handleDecrement = counter => {
     return (
       <React.StrictMode>
         <main className="container">
-          <NavBar />
+          {/* <NavBar totalCounters={this.state.counters.length} /> */}
+          <NavBar totalCounters={this.state.counters.filter(c => c.value>0).length} />
           <Counters 
             counters = {this.state.counters}
             onDelete={this.handleDelete}
