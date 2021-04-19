@@ -76,12 +76,17 @@ class Counter extends Component {
             //console.log('Counter - Updated');
         //}
 
-        componentDidUpdate(prevProps,prevState){
+        componentDidUpdate(prevProps,prevState) {
             console.log('prevProps',prevProps);
             console.log('prevState',prevState);
             if(prevProps.counter.value !== this.props.counter.value){
                 //Ajax call and get new data from the server
             }
+        }
+
+        componentWillUnmount(){
+            //to clean up, cleanup timers, or listeners. else we will endup with memory leaks
+            console.log("Counter - UnMount");
         }
         
         return (
