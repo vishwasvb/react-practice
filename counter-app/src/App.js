@@ -15,6 +15,31 @@ class App extends Component {
         { id: 4, value: 0 },
     ]
  };
+
+// constructor(){
+//   super();
+//   console.log('App-Constructor')
+// }
+
+
+
+//below constructor is called only once when the instance of a class is created
+//this is good for initialising the properties of the instance,
+constructor(props){
+  super(props);
+  console.log('App-Constructor', this.props);
+}
+
+
+//this is called after the component is rendered into the DOM, this is perfect to make ajax calls to get the data 
+//from the server
+componentDidMount(){
+  //Ajac calls
+  console.log('App-Mounted')
+}
+
+//react will schedule a call with the render once it sees setState, all the childern elements will also gets 
+//rendered
  handleIncrement = counter => {
     //  console.log('Inside handleIncrement');
  const counters = [...this.state.counters];
