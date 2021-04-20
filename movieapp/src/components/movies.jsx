@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {getMovies} from '../services/fakeMovieService';
+import Like from './like' 
 
 class Movies extends Component {
     state = {
@@ -14,6 +15,10 @@ class Movies extends Component {
          })
      };
 
+     handleLike = () => {
+         console.log("like clicked")
+     }
+
     render () {
         let name='Vishwas';
 
@@ -26,8 +31,8 @@ class Movies extends Component {
             //  <h1>{`My Name is ${name}`} </h1> // using back tick
             // <//h1></h1>
 
-            
-
+        <div> 
+            <h3>Showing {this.state.movies.length} movies in the database</h3>
             <table className="table">
                 <thead>
                     <tr>
@@ -35,6 +40,7 @@ class Movies extends Component {
                         <th>Genre</th>
                         <th>Stock</th>
                         <th>Rate</th>
+                        <th>Like</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -45,12 +51,14 @@ class Movies extends Component {
                         <td>{movie.genre.name}</td>    {/*this is comment*/}
                         <td>{movie.numberInStock}</td>
                         <td>{movie.dailyRentalRate}</td>
+                        <td><Like onClick={this.handleLike}/></td>
                         <td><button onClick={() => this.handleDelete(movie)} class="btn btn-danger">Delete</button></td>
                     </tr>
                     ))}
                     
                 </tbody>
             </table>
+        </div> 
         );
     }
 }
