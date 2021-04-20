@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
 import {getMovies} from '../services/fakeMovieService';
 import Like from './like' 
+import Pagination from './pagination'
 
 class Movies extends Component {
     state = {
         // count: 0
-        movies: getMovies() //storing array of object to movies by calling getMovies
-     }
+        movies: getMovies(), //storing array of object to movies by calling getMovies
+        pageSize: 4
+    };
 
      handleDelete = (movie) => {
          const movies = this.state.movies.filter(m => m._id !== movie._id)
@@ -24,8 +26,11 @@ class Movies extends Component {
         this.setState({movies});
     }
 
+    handlePageChange = () =>{
+
+    }
     render () {
-        let name='Vishwas';
+     const {length:count} = this.state.movies
 
         if(this.state.movies.length === 0 ) return <p>There are no movies in the </p>;
         return (
@@ -59,11 +64,14 @@ class Movies extends Component {
                         <td><Like likeStatus={movie.liked} onLike={() => this.handleLike(movie)}/></td>
                         <td><button onClick={() => this.handleDelete(movie)} class="btn btn-danger">Delete</button></td>
                     </tr>
+
                     ))}
                     
                 </tbody>
             </table>
+            <Pagination itemCount={count} pageSize={this.state.pageSize} onPageChange={this.handlePageChange}/>
         </div> 
+            
         );
     }
 }
