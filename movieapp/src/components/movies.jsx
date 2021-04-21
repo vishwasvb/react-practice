@@ -67,7 +67,11 @@ class Movies extends Component {
         <div style={{marginTop:20}}> 
             <div className='row'>
                 <div className='col-3'>
-                <ListGroup items={this.state.genres} onGenreSelect={this.handleGenreSelect}/>
+                <ListGroup 
+                    items={this.state.genres} 
+                    onGenreSelect={this.handleGenreSelect}
+                    selectedItem={selectedGenre}
+                />
                 </div>
             <div className='col'>
             <h3>Showing {filtered.length} movies in the database</h3>
