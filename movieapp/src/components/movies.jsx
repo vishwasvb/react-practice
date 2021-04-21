@@ -75,7 +75,13 @@ class Movies extends Component {
                     
                 </tbody>
             </table>
-            <Pagination itemCount={count} currentPage={currentPage} pageSize={pageSize} onPageChange={this.handlePageChange}/>
+            <Pagination
+                itemCount={count} 
+                //itemCount='abc' //this is to check propType Error
+                currentPage={currentPage}
+                pageSize={pageSize} 
+                onPageChange={this.handlePageChange}
+            />
         </div> 
             
         );
