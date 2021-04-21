@@ -23,8 +23,8 @@ class Movies extends Component {
         })  
     }
 
-    handleSort = () =>{
-        console.log("sort clicked");
+    handleSort = (path) =>{
+        console.log(path);
     }
 
     componentDidMount(){

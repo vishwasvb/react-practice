@@ -6,10 +6,10 @@ const MoviesTable = (props) => {
         <table className="table">
         <thead>
             <tr>
-                <th onClick={onSort}>Title</th>
-                <th onClick={onSort}>Genre</th>
-                <th onClick={onSort}>Stock</th>
-                <th onClick={onSort}>Rate</th>
+                <th onClick={() => onSort('title')}>Title</th>
+                <th onClick={() => onSort('genre.name')}>Genre</th>
+                <th onClick={() => onSort('numberInStock')}>Stock</th>
+                <th onClick={() => onSort('dailyRentalRate')}>Rate</th>
                 <th>Like</th>
                 <th>Action</th>
             </tr>
