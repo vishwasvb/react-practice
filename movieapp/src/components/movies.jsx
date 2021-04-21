@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {getMovies} from '../services/fakeMovieService';
 import {getGenres} from '../services/fakeGenreService'
-import Like from './like' 
 import Pagination from './common/pagination'
 import { Paginate } from '../utils/paginate';
 import ListGroup from './common/listGroup';
+import MoviesTable from './moviesTable'
 
 class Movies extends Component {
     state = {
@@ -20,8 +20,11 @@ class Movies extends Component {
     handleGenreSelect = (genre) =>{
         this.setState({selectedGenre:genre,
         currentPage:1
-    })
+        })  
+    }
 
+    handleSort = () =>{
+        console.log("sort clicked");
     }
 
     componentDidMount(){
@@ -79,35 +82,15 @@ class Movies extends Component {
                     selectedItem={selectedGenre}
                 />
                 </div>
-            <div className='col'>
-            <h3>Showing {filtered.length} movies in the database</h3>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Genre</th>
-                        <th>Stock</th>
-                        <th>Rate</th>
-                        <th>Like</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {movies.map(movie => (  //looping array of objects using map function 
-                        <tr key={movie._id}>
-                        <td>{movie.title}</td>
-                        <td>{movie.genre.name}</td>    {/*this is comment*/}
-                        <td>{movie.numberInStock}</td>
-                        <td>{movie.dailyRentalRate}</td>
-                        <td><Like likeStatus={movie.liked} onLike={() => this.handleLike(movie)}/></td>
-                        <td><button onClick={() => this.handleDelete(movie)} class="btn btn-danger">Delete</button></td>
-                    </tr>
-
-                    ))}
-                    
-                </tbody>
-            </table>
-            </div>
+                <div className='col'>
+                    <h3>Showing {filtered.length} movies in the database</h3>
+                    <MoviesTable
+                        movies={movies}
+                        onLike={this.handleLike} 
+                        onDelete={this.handleDelete}
+                        onSort={this.handleSort}
+                    />
+                </div>
             </div>
             <Pagination
                 itemCount={filtered.length} 
