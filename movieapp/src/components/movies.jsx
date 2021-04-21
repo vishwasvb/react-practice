@@ -1,17 +1,28 @@
 import React, {Component} from 'react'
 import {getMovies} from '../services/fakeMovieService';
+import {getGenres} from '../services/fakeGenreService'
 import Like from './like' 
 import Pagination from './common/pagination'
 import { Paginate } from '../utils/paginate';
-import ListGroup from './common/listgroup';
+import ListGroup from './common/listGroup';
 
 class Movies extends Component {
     state = {
         // count: 0
-        movies: getMovies(), //storing array of object to movies by calling getMovies
+        //movies: getMovies(), //storing array of object to movies by calling getMovies
+
+        movies:[],
+        genres:[],
         currentPage:1,
         pageSize: 4
     };
+
+    componentDidMount(){
+        this.setState({
+            movies:getMovies(),
+            genres:getGenres()
+        })
+    }
 
      handleDelete = (movie) => {
          const movies = this.state.movies.filter(m => m._id !== movie._id)
@@ -51,7 +62,7 @@ class Movies extends Component {
         <div style={{marginTop:20}}> 
             <div className='row'>
                 <div className='col-3'>
-                <ListGroup />
+                <ListGroup items={this.state.genres} />
                 </div>
             <div className='col'>
             <h3>Showing {this.state.movies.length} movies in the database</h3>
