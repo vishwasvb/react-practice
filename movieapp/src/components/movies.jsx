@@ -17,8 +17,8 @@ class Movies extends Component {
         pageSize: 4
     };
 
-    handleGenreSelect = () =>{
-        console.log("Genre Selected")
+    handleGenreSelect = (genre) =>{
+        console.log({genre});
     }
 
     componentDidMount(){

@@ -3,7 +3,7 @@ const ListGroup = (props) => {
         <div>
             <ul class="list-group">
                 {props.items.map(item =>
-                <li key={item._id} class="list-group-item " onClick={props.onGenreSelect}>
+                <li key={item._id} class="list-group-item " onClick={() => props.onGenreSelect(item)}>
                     {item.name}</li>)}
             </ul>
         </div>
