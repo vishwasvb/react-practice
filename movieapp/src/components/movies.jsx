@@ -18,11 +18,14 @@ class Movies extends Component {
     };
 
     handleGenreSelect = (genre) =>{
-        this.setState({selectedGenre:genre})
+        this.setState({selectedGenre:genre,
+        currentPage:1
+    })
+
     }
 
     componentDidMount(){
-        const genres = [{name: " All Genres"},...getGenres()]
+        const genres = [{_id:"",name: " All Genres"},...getGenres()]
         this.setState({
             movies:getMovies(),
             genres
@@ -70,6 +73,8 @@ class Movies extends Component {
                 <div className='col-3'>
                 <ListGroup 
                     items={this.state.genres} 
+                    textProperty = "name"
+                    valueProperty = "_id"
                     onGenreSelect={this.handleGenreSelect}
                     selectedItem={selectedGenre}
                 />
@@ -105,7 +110,7 @@ class Movies extends Component {
             </div>
             </div>
             <Pagination
-                itemCount={count} 
+                itemCount={filtered.length} 
                 //itemCount='abc' //this is to check propType Error
                 currentPage={currentPage}
                 pageSize={pageSize} 
