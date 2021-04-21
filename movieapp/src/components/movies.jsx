@@ -22,9 +22,10 @@ class Movies extends Component {
     }
 
     componentDidMount(){
+        const genres = [{name: " All Genres"},...getGenres()]
         this.setState({
             movies:getMovies(),
-            genres:getGenres()
+            genres
         })
     }
 
@@ -52,7 +53,7 @@ class Movies extends Component {
     render () {
      const {length:count} = this.state.movies
      const {pageSize, currentPage, movies: allMovies, selectedGenre } = this.state;
-     const filtered = selectedGenre ? allMovies.filter(m => m.genre._id === selectedGenre._id) : allMovies
+     const filtered = selectedGenre && selectedGenre._id ? allMovies.filter(m => m.genre._id === selectedGenre._id) : allMovies
      const movies = Paginate(filtered, currentPage, pageSize);
 
         if(this.state.movies.length === 0 ) return <p>There are no movies in the </p>;
