@@ -3,6 +3,7 @@ import {getMovies} from '../services/fakeMovieService';
 import Like from './like' 
 import Pagination from './common/pagination'
 import { Paginate } from '../utils/paginate';
+import ListGroup from './common/listgroup';
 
 class Movies extends Component {
     state = {
@@ -47,7 +48,12 @@ class Movies extends Component {
             //  <h1>{`My Name is ${name}`} </h1> // using back tick
             // <//h1></h1>
 
-        <div> 
+        <div style={{marginTop:20}}> 
+            <div className='row'>
+                <div className='col-3'>
+                <ListGroup />
+                </div>
+            <div className='col'>
             <h3>Showing {this.state.movies.length} movies in the database</h3>
             <table className="table">
                 <thead>
@@ -75,6 +81,8 @@ class Movies extends Component {
                     
                 </tbody>
             </table>
+            </div>
+            </div>
             <Pagination
                 itemCount={count} 
                 //itemCount='abc' //this is to check propType Error
