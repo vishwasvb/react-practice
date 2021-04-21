@@ -18,7 +18,7 @@ class Movies extends Component {
     };
 
     handleGenreSelect = (genre) =>{
-        console.log({genre});
+        this.setState({selectedGenre:genre})
     }
 
     componentDidMount(){
@@ -51,8 +51,9 @@ class Movies extends Component {
     }
     render () {
      const {length:count} = this.state.movies
-     const {pageSize, currentPage, movies: allMovies } = this.state;
-     const movies = Paginate(allMovies, currentPage, pageSize);
+     const {pageSize, currentPage, movies: allMovies, selectedGenre } = this.state;
+     const filtered = selectedGenre ? allMovies.filter(m => m.genre._id === selectedGenre._id) : allMovies
+     const movies = Paginate(filtered, currentPage, pageSize);
 
         if(this.state.movies.length === 0 ) return <p>There are no movies in the </p>;
         return (
@@ -69,7 +70,7 @@ class Movies extends Component {
                 <ListGroup items={this.state.genres} onGenreSelect={this.handleGenreSelect}/>
                 </div>
             <div className='col'>
-            <h3>Showing {this.state.movies.length} movies in the database</h3>
+            <h3>Showing {filtered.length} movies in the database</h3>
             <table className="table">
                 <thead>
                     <tr>
