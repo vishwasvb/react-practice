@@ -9,8 +9,8 @@ class MoviesTable extends Component {
        {path: 'genre.name', label: 'Genre'},
        {path: 'numberInStock', label: 'Stock'},
        {path: 'dailyRentalRate', label: 'Rate'},
-       {key: 'Like', content: movie => ( <Like likeStatus={movie.liked} onLike={() => this.props.onLike(movie)}/>) },
-       {key: 'Action', content: movie => (<button onClick={() => this.props.onDelete(movie)} className="btn btn-danger">Delete</button>)}
+       {key: 'Like',label:'Like', content: movie => ( <Like likeStatus={movie.liked} onLike={() => this.props.onLike(movie)}/>) },
+       {key: 'Action',label:'Action', content: movie => (<button onClick={() => this.props.onDelete(movie)} className="btn btn-danger">Delete</button>)}
     ]
     render(){
         const {movies,onDelete,onLike,sortColumn,onSort}=this.props;
