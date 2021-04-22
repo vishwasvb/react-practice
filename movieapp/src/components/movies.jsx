@@ -61,14 +61,20 @@ class Movies extends Component {
             currentPage: page
         })
     }
-    render () {
-     const {length:count} = this.state.movies
-     const {pageSize, currentPage, movies: allMovies, selectedGenre, sortColumn } = this.state;
-     const filtered = selectedGenre && selectedGenre._id ? allMovies.filter(m => m.genre._id === selectedGenre._id) : allMovies
-     const sorted = _.orderBy(filtered,[sortColumn.path],[sortColumn.order])
-     const movies = Paginate(sorted, currentPage, pageSize);
 
+    getPagedData = () => {
+        // const {length:count} = this.state.movies
+        const {pageSize, currentPage, movies: allMovies, selectedGenre, sortColumn } = this.state;
+        const filtered = selectedGenre && selectedGenre._id ? allMovies.filter(m => m.genre._id === selectedGenre._id) : allMovies
+        const sorted = _.orderBy(filtered,[sortColumn.path],[sortColumn.order]);
+        const movies = Paginate(sorted, currentPage, pageSize);
+
+        return {totalCount: filtered.length, data:movies, pageSize, currentPage, selectedGenre}
+    }
+    render () {
         if(this.state.movies.length === 0 ) return <p>There are no movies in the </p>;
+
+        const {totalCount, data, pageSize, currentPage, selectedGenre} = this.getPagedData();
         return (
             // <h1>Movie List</h1> normal h1 tag
             // <h1>{2*2}</h1> expression
@@ -89,9 +95,9 @@ class Movies extends Component {
                 />
                 </div>
                 <div className='col'>
-                    <h3>Showing {filtered.length} movies in the database</h3>
+                    <h3>Showing  {totalCount} movies in the database</h3>
                     <MoviesTable
-                        movies={movies}
+                        movies={data}
                         onLike={this.handleLike} 
                         onDelete={this.handleDelete}
                         onSort={this.handleSort}
@@ -100,7 +106,7 @@ class Movies extends Component {
                 </div>
             </div>
             <Pagination
-                itemCount={filtered.length} 
+                itemCount= {totalCount}
                 //itemCount='abc' //this is to check propType Error
                 currentPage={currentPage}
                 pageSize={pageSize} 
