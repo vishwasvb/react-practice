@@ -1,7 +1,8 @@
  import React, {Component} from 'react';
  import Like from './like' 
- import TableHeader from './common/tableHeader'
- import TableBody from './common/tableBody'
+//  import TableHeader from './common/tableHeader'
+//  import TableBody from './common/tableBody'
+import Table from './common/table';
  
 class MoviesTable extends Component {
    columns = [
@@ -15,25 +16,32 @@ class MoviesTable extends Component {
     render(){
         const {movies,onDelete,onLike,sortColumn,onSort}=this.props;
         return(
-            <table className="table">
-               
-                <TableHeader
-                    columns={this.columns}
+                <Table 
+                    columns ={this.columns}
+                    data={movies}
                     sortColumn={sortColumn}
                     onSort={onSort}
                 />
 
-                <TableBody 
-                    data={movies}
-                    columns={this.columns}
-                />
+            // <table className="table">
+               
+            //     <TableHeader
+            //         columns={this.columns}
+            //         sortColumn={sortColumn}
+            //         onSort={onSort}
+            //     />
 
-                {/* <tbody>
-                    {movies.map(movie => (  //looping array of objects using map function 
-                        <tr key={movie._id}>
-                            <td>{movie.title}</td>
-                            <td>{movie.genre.name}</td>    {/*this is comment*/}
-                            {/* <td>{movie.numberInStock}</td>
+            //     <TableBody 
+            //         data={movies}
+            //         columns={this.columns}
+            //     />
+
+                // {/* <tbody>
+                    // {movies.map(movie => (  //looping array of objects using map function 
+                    //     <tr key={movie._id}>
+                    //         <td>{movie.title}</td>
+                    //         <td>{movie.genre.name}</td>    {/*this is comment*/}
+                            /* <td>{movie.numberInStock}</td>
                             <td>{movie.dailyRentalRate}</td>
                             <td>
                                 <Like 
@@ -46,8 +54,8 @@ class MoviesTable extends Component {
             
                         ))}
                         
-                    </tbody> */}
-                </table> 
+                    </tbody> */
+                // </table> 
                  );
         
     }
