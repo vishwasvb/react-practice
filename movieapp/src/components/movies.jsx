@@ -79,7 +79,7 @@ class Movies extends Component {
 
         <div style={{marginTop:20}}> 
             <div className='row'>
-                <div className='col-3'>
+                <div className='col-3' style={{marginTop:40}}>
                 <ListGroup 
                     items={this.state.genres} 
                     textProperty = "name"
