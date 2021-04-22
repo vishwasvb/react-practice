@@ -1,6 +1,7 @@
  import React, {Component} from 'react';
  import Like from './like' 
  import TableHeader from './common/tableHeader'
+ import TableBody from './common/tableBody'
  
 class MoviesTable extends Component {
    columns = [
@@ -8,10 +9,9 @@ class MoviesTable extends Component {
        {path: 'genre.name', label: 'Genre'},
        {path: 'numberInStock', label: 'Stock'},
        {path: 'dailyRentalRate', label: 'Rate'},
-       {key: 'Like'},
-       {key: 'Action'}
-
-   ]
+       {key: 'Like', content: movie => ( <Like likeStatus={movie.liked} onLike={() => this.props.onLike(movie)}/>) },
+       {key: 'Action', content: movie => (<button onClick={() => this.props.onDelete(movie)} className="btn btn-danger">Delete</button>)}
+    ]
     render(){
         const {movies,onDelete,onLike,sortColumn,onSort}=this.props;
         return(
@@ -23,13 +23,17 @@ class MoviesTable extends Component {
                     onSort={onSort}
                 />
 
+                <TableBody 
+                    data={movies}
+                    columns={this.columns}
+                />
 
-                <tbody>
+                {/* <tbody>
                     {movies.map(movie => (  //looping array of objects using map function 
                         <tr key={movie._id}>
                             <td>{movie.title}</td>
                             <td>{movie.genre.name}</td>    {/*this is comment*/}
-                            <td>{movie.numberInStock}</td>
+                            {/* <td>{movie.numberInStock}</td>
                             <td>{movie.dailyRentalRate}</td>
                             <td>
                                 <Like 
@@ -42,8 +46,8 @@ class MoviesTable extends Component {
             
                         ))}
                         
-                    </tbody>
-                </table>
+                    </tbody> */}
+                </table> 
                  );
         
     }
