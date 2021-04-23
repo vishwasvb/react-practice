@@ -9,6 +9,7 @@ import React from 'react';
 import Customers from "./components/customers";
 import Rentals from './components/rental';
 import NotFound from './components/notFound';
+import MovieForm from './components/movieForm'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
      <NavBar />
       <main role="main" class="container">
         <Switch>
+          <Route path='/movies/:id' component={MovieForm} />
           <Route path="/movies" component={Movies} />
           <Route path="/customers" component={Customers} />
           <Route path="/rentals" component={Rentals} />
