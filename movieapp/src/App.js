@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import {Route,Switch} from 'react-router-dom';
+import {Route,Switch,Redirect} from 'react-router-dom';
 
 import './App.css';
 
@@ -8,6 +8,7 @@ import Movies from './components/movies';
 import React from 'react';
 import Customers from "./components/customers";
 import Rentals from './components/rental';
+import NotFound from './components/notFound';
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
           <Route path="/movies" component={Movies} />
           <Route path="/customers" component={Customers} />
           <Route path="/rentals" component={Rentals} />
-          <Route path="/" component={Movies} />
-
+          <Route path='/not-found' component={NotFound} />
+          <Route path="/" exact component={Movies} />
+          <Redirect to='/not-found'/>
         </Switch>
       </main>
    </React.Fragment>
