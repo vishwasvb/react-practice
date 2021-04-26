@@ -6,16 +6,42 @@ class LoginForm extends Component {
     
     // username = React.createRef();//this will create a ref object
 
-    state ={
-        account: {username:'',password:''}
+    state = {
+        account: {username:'',password:''},
+
+        errors:{}
         //account: {password:''} // will get an controlled error
         // account: {username: null,password: ''} //will get an null error
     }
 
+    validate = () => {
+
+        const errors = {};
+        const {account} = this.state;
+
+        if(account.username.trim() === '')
+            errors.username='Username is required';
+        
+        if(account.password.trim() === '')
+            errors.password='Password is required';
+        
+        return Object.keys(errors).length === 0? null : errors; //Object.keys will return array of all keys
+    }
+
+
     handleSubmit = obj =>{
         obj.preventDefault();
+        const errors = this.validate();
+        console.log(errors)
+
+        // to resolve the error, errors property should always set to an  object, it should never be null
+
+        this.setState({errors: errors || {}});
+        
+        if(errors) return;
+
         console.log("Form Submitted");
-        console.log(this.state.account);
+        // console.log(this.state.account);
         
         // const username=document.getElementById('username').value; //this should not be used in react we should only work on virtual DOM, we Should not directly access real DOM
         // const username=this.username.current.value;
@@ -33,7 +59,7 @@ class LoginForm extends Component {
     // }
 
     render() {
-        const {account} = this.state; 
+        const {account,errors} = this.state; 
         return ( 
             <div>
                 <h1>Login Form</h1>
@@ -43,12 +69,14 @@ class LoginForm extends Component {
                             value={account.username}
                             label="User Name"
                             onChange={this.handleChange}
+                            error={errors.username}
                         />
                         <Input 
                             name="password"
                             value={account.password}
                             label="Password"
                             onChange={this.handleChange}
+                            error={errors.password}
                         />
                        
                     <button className='btn btn-primary'>Submit</button>
