@@ -6,6 +6,8 @@ class LoginForm extends Component {
 
     state ={
         account: {username:'',password:''}
+        //account: {password:''} // will get an controlled error
+        // account: {username: null,password: ''} //will get an null error
     }
 
     handleSubmit = obj =>{
@@ -28,7 +30,8 @@ class LoginForm extends Component {
     //     this.username.current.focus();
     // }
 
-    render() { 
+    render() {
+        const {account} = this.state; 
         return ( 
             <div>
                 <h1>Login Form</h1>
@@ -36,11 +39,25 @@ class LoginForm extends Component {
                     <div className="form-group">
                         <lable htmlFor="username">User Name</lable>
                         {/* <input ref={this.username} type="text" id="username" className="form-control"/> */}
-                        <input autoFocus onChange={this.handleChange} type="text" name='username' id="username" className="form-control"/>
+                        <input autoFocus 
+                            onChange={this.handleChange} 
+                            type="text" 
+                            name='username' 
+                            value={account.username}
+                            id="username" 
+                            className="form-control"
+                        />
                     </div>
                     <div className="form-group">
                         <lable htmlFor="password">Password</lable>
-                        <input onChange={this.handleChange} type="text" name='password' id="password" className="form-control"/>
+                        <input 
+                            onChange={this.handleChange} 
+                            type="text" 
+                            name='password' 
+                            value={account.password}
+                            id="password" 
+                            className="form-control"
+                        />
                     </div>
                     <button className='btn btn-primary'>Submit</button>
                 </form>
