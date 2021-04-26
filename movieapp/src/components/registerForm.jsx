@@ -15,7 +15,7 @@ class RegisterForm extends Form {
     }
 
     schema={
-        username:Joi.string().required().label('Username'),
+        username:Joi.string().required().email().label('Username'),
         password:Joi.string().required().label('Password'),
         name:Joi.string().required().label('Name'),
     }
