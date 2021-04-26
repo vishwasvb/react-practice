@@ -1,10 +1,10 @@
-const Input = ({name,value,label,onChange,error}) => {
+const Input = ({name,value,label,onChange,error,type}) => {
     return (
         <div className="form-group">
         <lable htmlFor={name}>{label}</lable>
         <input 
             onChange={onChange} 
-            type="text" 
+            type={type} 
             name={name}
             value={value}
             id={name} 
