@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 
+import Input from './common/input'
+
 class LoginForm extends Component {
     
     // username = React.createRef();//this will create a ref object
@@ -36,29 +38,19 @@ class LoginForm extends Component {
             <div>
                 <h1>Login Form</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <lable htmlFor="username">User Name</lable>
-                        {/* <input ref={this.username} type="text" id="username" className="form-control"/> */}
-                        <input autoFocus 
-                            onChange={this.handleChange} 
-                            type="text" 
-                            name='username' 
+                        <Input
+                            name="username"
                             value={account.username}
-                            id="username" 
-                            className="form-control"
+                            label="User Name"
+                            onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="form-group">
-                        <lable htmlFor="password">Password</lable>
-                        <input 
-                            onChange={this.handleChange} 
-                            type="text" 
-                            name='password' 
+                        <Input 
+                            name="password"
                             value={account.password}
-                            id="password" 
-                            className="form-control"
+                            label="Password"
+                            onChange={this.handleChange}
                         />
-                    </div>
+                       
                     <button className='btn btn-primary'>Submit</button>
                 </form>
 
